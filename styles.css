@@ -195,7 +195,7 @@ body {
 }
 
 .plugin-screenshot:hover {
-    transform: scale(1.02);
+    /* Removed scaling to prevent GitHub display issues */
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
 }
 
