@@ -263,6 +263,8 @@ document.addEventListener('DOMContentLoaded', function() {
     images.forEach(img => imageObserver.observe(img));
 });
 
+// Old modal code removed - new simple modal is inline in HTML
+
 // Add CSS animations via JavaScript
 const style = document.createElement('style');
 style.textContent = `

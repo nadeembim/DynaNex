@@ -15,15 +15,14 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <div class="logo-icon">
+                <div class="nav-main-logo">
                     <img src="Logo.png" alt="DynaNex Logo">
                 </div>
-                <span class="logo-text">DynaNex</span>
-                <span class="version">V1.0</span>
             </div>
             <div class="nav-menu">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#features" class="nav-link">Features</a>
+                <a href="#plugin-showcase" class="nav-link">Addin Interface</a>
                 <a href="#guide" class="nav-link">Quick Start</a>
                 <a href="#user-guide" class="nav-link">User Guide</a>
                 <a href="#excel-tips" class="nav-link">Excel Tips</a>
@@ -65,6 +64,10 @@
                         <i class="fas fa-play"></i>
                         View Features
                     </a>
+                    <button class="btn btn-download" onclick="openModal()">
+                        <i class="fas fa-download"></i>
+                        Download DynaNex
+                    </button>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
@@ -156,6 +159,26 @@
                     </div>
                     <h3>Scope Selection</h3>
                     <p>Work with Active View elements or the entire model. Complete flexibility for any project size.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plugin Screenshot Section -->
+    <section id="plugin-showcase" class="plugin-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Addin Interface</h2>
+                <p class="section-description">See DynaNex in action</p>
+            </div>
+            <div class="screenshot-container">
+                <div class="screenshot-item">
+                    <h3 class="screenshot-label">Dark Mode</h3>
+                    <img src="Dark.png" alt="DynaNex Addin Interface - Dark Mode" class="plugin-screenshot">
+                </div>
+                <div class="screenshot-item">
+                    <h3 class="screenshot-label">Light Mode</h3>
+                    <img src="Light.png" alt="DynaNex Addin Interface - Light Mode" class="plugin-screenshot">
                 </div>
             </div>
         </div>
@@ -617,9 +640,7 @@
                         <div class="logo-icon">
                             <img src="Logo.png" alt="DynaNex Logo">
                         </div>
-                        <span class="logo-text">DynaNex</span>
                     </div>
-                    <p>Advanced parameter management for Revit professionals worldwide.</p>
                 </div>
                 <div class="footer-links">
                     <div class="link-group">
@@ -636,16 +657,13 @@
                     </div>
                     <div class="link-group">
                         <h4>Developer</h4>
-                        <a href="https://my.linkedin.com/in/nadeemahmed-nbim" target="_blank">Nadeem Ahmed</a>
-                        <a href="#credits">Credits</a>
-                        <a href="#license">Open Source License</a>
+                        <a href="https://my.linkedin.com/in/nadeemahmed-nbim" target="_blank">Contact Us</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <div class="footer-credit">
                     <p>&copy; 2025 DynaNex V1.0 - Developed by <strong>Nadeem Ahmed</strong></p>
-                    <p>Advanced Revit Addin - "Power Your Connections"</p>
                 </div>
                 <div class="footer-version">
                     <span class="version-badge">Version 1.0</span>
@@ -654,6 +672,43 @@
         </div>
     </footer>
 
+    <!-- Simple Download Modal -->
+    <div id="downloadModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 40px; border-radius: 15px; text-align: center; max-width: 500px; margin: 20px; color: black;">
+            <div style="font-size: 60px; color: #f59e0b; margin-bottom: 20px;">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h2 style="margin-bottom: 15px; color: black;">DynaNex will be available soon</h2>
+            <p style="margin-bottom: 30px; color: #666; font-size: 18px;">For early access, contact me</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://my.linkedin.com/in/nadeemahmed-nbim" target="_blank" style="background: #0077b5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fab fa-linkedin"></i>
+                    Contact on LinkedIn
+                </a>
+                <button onclick="closeModal()" style="background: #666; color: white; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer;">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    
+    <script>
+        function openModal() {
+            console.log('Opening modal...');
+            document.getElementById('downloadModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            console.log('Closing modal...');
+            document.getElementById('downloadModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('downloadModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
