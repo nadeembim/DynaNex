@@ -43,34 +43,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Active Navigation Highlight on Scroll
+    // Active Navigation Highlight on Scroll - Optimized for mobile
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    let isScrolling = false;
 
     function updateActiveNav() {
-        const scrollPosition = window.scrollY + 100;
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
+        if (!isScrolling) {
+            window.requestAnimationFrame(function() {
+                const scrollPosition = window.scrollY + 100;
+                
+                // Use cached section positions for better performance
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            const isActive = link.getAttribute('href') === `#${sectionId}`;
+                            if (isActive && !link.classList.contains('active')) {
+                                // Remove active from all links first
+                                navLinks.forEach(l => l.classList.remove('active'));
+                                // Add active to current link
+                                link.classList.add('active');
+                            }
+                        });
                     }
                 });
-            }
-        });
+                
+                isScrolling = false;
+            });
+        }
+        isScrolling = true;
     }
 
-    window.addEventListener('scroll', updateActiveNav);
+    // Throttled scroll listener for better mobile performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateActiveNav, 16); // ~60fps
+    }, { passive: true });
 
-    // Animate Elements on Scroll
+    // Animate Elements on Scroll - Optimized for mobile
+    const isTouchDevice = 'ontouchstart' in window && window.innerWidth <= 768;
     const observerOptions = {
-        threshold: 0.1,
+        threshold: isTouchDevice ? 0.05 : 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
@@ -79,12 +97,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                // Unobserve after animation to improve performance
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe elements for animation
-    document.querySelectorAll('.feature-card, .step, .doc-card').forEach(element => {
+    // Observe elements for animation - Full speed on desktop
+    const elementsToAnimate = document.querySelectorAll('.feature-card, .step, .doc-card');
+    elementsToAnimate.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -169,56 +190,62 @@ document.addEventListener('DOMContentLoaded', function() {
         progressObserver.observe(floatingCard);
     }
 
-    // Add parallax effect to hero background
+    // Add parallax effect to hero background - Full speed on desktop
     function updateParallax() {
         const scrolled = window.pageYOffset;
         const heroBackground = document.querySelector('.hero-background');
         
         if (heroBackground && scrolled < window.innerHeight) {
-            const rate = scrolled * -0.5;
+            const rate = scrolled * -0.5; // Full parallax intensity restored
             heroBackground.style.transform = `translateY(${rate}px)`;
         }
     }
 
-    // Throttle parallax updates for better performance
-    let ticking = false;
+    // Optimized parallax with smooth performance
+    let parallaxTicking = false;
     function requestParallaxUpdate() {
-        if (!ticking) {
+        if (!parallaxTicking) {
             requestAnimationFrame(updateParallax);
-            ticking = true;
-            setTimeout(() => { ticking = false; }, 16);
+            parallaxTicking = true;
+            setTimeout(() => { parallaxTicking = false; }, 16); // 60fps
         }
     }
 
-    window.addEventListener('scroll', requestParallaxUpdate);
+    // Enable parallax on all devices except small touch screens
+    const isSmallTouchDevice = 'ontouchstart' in window && window.innerWidth <= 768;
+    if (!isSmallTouchDevice) {
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    }
 
-    // Feature card hover effects
-    document.querySelectorAll('.feature-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
+    // Feature card hover effects - Only on non-touch devices
+    if (!('ontouchstart' in window)) {
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
         });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
 
-    // Doc card hover effects
-    document.querySelectorAll('.doc-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            const arrow = this.querySelector('.doc-arrow');
-            if (arrow) {
-                arrow.style.transform = 'translateX(5px)';
-            }
+        // Doc card hover effects - Only on non-touch devices
+        document.querySelectorAll('.doc-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const arrow = this.querySelector('.doc-arrow');
+                if (arrow) {
+                    arrow.style.transform = 'translateX(5px)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const arrow = this.querySelector('.doc-arrow');
+                if (arrow) {
+                    arrow.style.transform = 'translateX(0)';
+                }
+            });
         });
-        
-        card.addEventListener('mouseleave', function() {
-            const arrow = this.querySelector('.doc-arrow');
-            if (arrow) {
-                arrow.style.transform = 'translateX(0)';
-            }
-        });
-    });
+    }
 
     // Add loading animation
     window.addEventListener('load', function() {
@@ -241,11 +268,72 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Tab') {
             document.body.classList.add('keyboard-navigation');
         }
+        // Close mobile menu on Escape key
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
     });
 
     document.addEventListener('click', function() {
         document.body.classList.remove('keyboard-navigation');
     });
+
+    // Touch and mobile improvements
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    // Better touch handling for mobile navigation
+    if (mobileMenu && navMenu) {
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Touch gesture for closing menu
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndY < touchStartY - 50 && navMenu.classList.contains('active')) {
+                // Swipe up to close menu
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        }
+    }
+
+    // Improve button touch feedback
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+
+        button.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // Prevent zoom on double-tap for better mobile UX
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
 
     // Performance optimization: Lazy load images
     const images = document.querySelectorAll('img[data-src]');
@@ -318,6 +406,48 @@ style.textContent = `
     @media (max-width: 768px) {
         .nav-menu {
             display: none;
+        }
+        
+        .nav-menu.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: var(--space-lg);
+            gap: var(--space-lg);
+            z-index: 1000;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        .nav-menu.active .nav-link {
+            color: var(--primary-white);
+            font-size: 1.1rem;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+        }
+        
+        .nav-menu.active .nav-link:hover,
+        .nav-menu.active .nav-link.active {
+            background: var(--accent-blue);
+            transform: translateX(5px);
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     }
 `;

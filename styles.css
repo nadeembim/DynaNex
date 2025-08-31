@@ -1054,7 +1054,37 @@ body {
     }
 }
 
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+    /* Performance optimizations ONLY for mobile touch devices */
+    .feature-card,
+    .step,
+    .doc-card {
+        animation-duration: 0.3s;
+        transition-duration: 0.3s;
+    }
+    
+    /* Disable scroll-behavior smooth on mobile for performance */
+    html {
+        scroll-behavior: auto;
+    }
+    
+    /* Hardware acceleration for mobile */
+    .feature-card,
+    .step,
+    .doc-card {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
 @media (max-width: 768px) {
+    
+    /* Container and spacing adjustments */
+    .container {
+        padding: 0 var(--space-md);
+    }
+    
+    /* Navigation improvements */
     .nav-menu {
         display: none;
     }
@@ -1063,45 +1093,236 @@ body {
         display: flex;
     }
     
+    .nav-container {
+        padding: var(--space-sm) var(--space-md);
+    }
+    
     .logo-icon {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+    
+    /* Hero section mobile optimizations */
+    .hero {
+        min-height: 90vh;
+        padding: var(--space-xl) 0;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: var(--space-md);
     }
     
-    .section-title {
-        font-size: 2rem;
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: var(--space-xl);
+        padding: 0 var(--space-sm);
     }
     
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: var(--space-md);
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: var(--space-lg) var(--space-xl);
+        font-size: 1rem;
     }
     
     .hero-stats {
         justify-content: center;
+        gap: var(--space-md);
+        flex-wrap: wrap;
+        margin-top: var(--space-xl);
+    }
+    
+    .stat {
+        min-width: 100px;
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    /* Hero visual code block mobile */
+    .hero-code-block {
+        margin-top: var(--space-xl);
+        font-size: 0.8rem;
+    }
+    
+    /* Typography improvements */
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .section-description {
+        font-size: 1rem;
+        margin-bottom: var(--space-xl);
+    }
+    
+    /* Feature cards mobile optimization */
+    .features-grid {
+        grid-template-columns: 1fr;
         gap: var(--space-lg);
     }
     
-    .features-grid {
-        grid-template-columns: 1fr;
+    .feature-card {
+        padding: var(--space-xl);
+        text-align: center;
     }
     
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    /* Steps and guide sections */
+    .guide-steps {
+        gap: var(--space-xl);
+    }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-lg);
+    }
+    
+    .step-number {
+        margin-bottom: var(--space-md);
+        position: static;
+        transform: none;
+    }
+    
+    .step-visual {
+        order: -1;
+        margin-bottom: var(--space-md);
+    }
+    
+    /* Content sections */
+    .guide-content {
+        padding: var(--space-lg);
+    }
+    
+    .guide-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .guide-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: var(--space-sm);
+    }
+    
+    /* Tables and lists mobile friendly */
+    .tip-box, .warning-box, .success-box, .requirements-box {
+        padding: var(--space-md);
+        margin: var(--space-md) 0;
+    }
+    
+    .code-content {
+        font-size: 0.8rem;
+        padding: var(--space-md);
+        overflow-x: auto;
+    }
+    
+    /* Footer mobile optimization */
     .doc-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-lg);
     }
     
     .footer-links {
         grid-template-columns: 1fr;
         gap: var(--space-lg);
+        text-align: center;
     }
     
     .footer-bottom {
         flex-direction: column;
         gap: var(--space-md);
         text-align: center;
+    }
+    
+    .footer-credit {
+        font-size: 0.9rem;
+    }
+}
+
+/* Desktop and laptop optimizations - ensure full animations */
+@media (min-width: 769px) and (pointer: fine) {
+    /* Ensure smooth animations on desktop */
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+    
+    .step {
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    /* Parallax and smooth scrolling enabled on desktop */
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Additional mobile improvements for very small screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-sm);
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 0.9rem;
+    }
+    
+    .feature-card {
+        padding: var(--space-lg);
+    }
+    
+    .step {
+        padding: var(--space-md);
+    }
+    
+    .hero-stats {
+        gap: var(--space-sm);
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    /* Logo adjustments for very small screens */
+    .logo-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .nav-container {
+        padding: var(--space-xs) var(--space-sm);
     }
 }
