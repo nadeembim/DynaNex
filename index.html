@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DynaNex - Advanced Revit Addin | User Manual</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <img src="Logo.png" alt="DynaNex Logo">
+                </div>
+                <span class="logo-text">DynaNex</span>
+                <span class="version">V1.0</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#guide" class="nav-link">Quick Start</a>
+                <a href="#user-guide" class="nav-link">User Guide</a>
+                <a href="#excel-tips" class="nav-link">Excel Tips</a>
+                <a href="#installation" class="nav-link">Installation</a>
+                <a href="#troubleshooting" class="nav-link">Support</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Advanced Revit Addin</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">DynaNex</span>
+                    <br>Power Your Connections
+                </h1>
+                <p class="hero-description">
+                    The most advanced parameter management addin for Revit. Seamlessly export and import parameters between Revit and Microsoft Excel with professional-grade precision and control.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#guide" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        View Features
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Compatible Revit 2020-2026</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Parameters</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2-Way</div>
+                        <div class="stat-label">Excel Sync</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-code-block">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="code-title">DynaNex.py</span>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line"><span class="line-number">1</span><span class="keyword">import</span> <span class="string">DynaNex</span></div>
+                        <div class="code-line"><span class="line-number">2</span><span class="keyword">from</span> <span class="string">revit</span> <span class="keyword">import</span> <span class="string">parameters</span></div>
+                        <div class="code-line"><span class="line-number">3</span></div>
+                        <div class="code-line"><span class="line-number">4</span><span class="comment"># Power your connections</span></div>
+                        <div class="code-line"><span class="line-number">5</span><span class="function">export</span>(<span class="string">"categories"</span>, <span class="string">"excel"</span>)</div>
+                        <div class="code-line"><span class="line-number">6</span><span class="function">sync</span>(<span class="string">"parameters"</span>, <span class="boolean">True</span>)</div>
+                        <div class="code-line"><span class="line-number">7</span></div>
+                        <div class="code-line"><span class="line-number">8</span><span class="comment"># Advanced Revit Addin</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-description">Everything you need for professional parameter management</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h3>Excel Integration</h3>
+                    <p>Seamlessly export parameters to Excel with organized sheets for each category. Edit values with familiar spreadsheet tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Smart Import</h3>
+                    <p>Import modified parameters back to Revit with intelligent validation and error handling for safe updates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Category Control</h3>
+                    <p>Select specific categories for targeted exports. Each category gets its own Excel sheet for better organization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Advanced Filtering</h3>
+                    <p>Search and filter parameters instantly. Find exactly what you need with intelligent search capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safe Transactions</h3>
+                    <p>All operations use Revit transactions for safe, undoable updates. Your model integrity is protected.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Scope Selection</h3>
+                    <p>Work with Active View elements or the entire model. Complete flexibility for any project size.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Guide -->
+    <section id="guide" class="guide">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Quick Start Guide</h2>
+                <p class="section-description">Get up and running in minutes</p>
+            </div>
+            <div class="guide-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Launch DynaNex</h3>
+                        <p>Open the plugin from your Revit interface. The modern, intuitive dashboard will appear with all tools ready to use.</p>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Select Categories</h3>
+                        <p>Choose the element categories you want to work with (Walls, Doors, Windows, etc.). Use the search feature for quick selection.</p>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-list-check"></i>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Pick Parameters</h3>
+                        <p>Select the parameters you want to export. The interface shows only relevant parameters based on your category selection.</p>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Export to Excel</h3>
+                        <p>Click export and choose your save location. Each category gets its own Excel sheet with organized parameter data.</p>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Edit & Import</h3>
+                        <p>Make changes in Excel and import back to Revit. All changes are applied safely with full transaction support.</p>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete User Guide Section -->
+    <section id="user-guide" class="guide">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Complete User Guide</h2>
+                <p class="section-description">Master DynaNex with this comprehensive guide to Excel parameter management in Revit</p>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="guide-content">
+                <h2>Getting Started</h2>
+                <p>DynaNex is an advanced Revit addin that provides seamless integration between Revit and Microsoft Excel for parameter management. This guide will walk you through every feature and workflow.</p>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Launch DynaNex</h3>
+                        <p>Open DynaNex from the pyRevit tab in your Revit interface. The modern, intuitive dashboard will appear with all tools ready to use.</p>
+                        <div class="feature-highlight">
+                            <h4>🎯 What You'll See:</h4>
+                            <ul style="margin-top: var(--space-md);">
+                                <li><strong>Scope Selection:</strong> Choose between Active View or Whole Model</li>
+                                <li><strong>Category Browser:</strong> Select element categories (Walls, Doors, Windows, etc.)</li>
+                                <li><strong>Parameter Panel:</strong> View and select parameters for your chosen categories</li>
+                                <li><strong>Search Functions:</strong> Quick filtering for categories and parameters</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Choose Your Scope</h3>
+                        <p>Select your working scope based on your project needs:</p>
+                        <ul style="margin-top: var(--space-md);">
+                            <li><strong>Active View:</strong> Work with elements visible in your current view only</li>
+                            <li><strong>Whole Model:</strong> Process all elements throughout the entire Revit model</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Workflow -->
+            <div class="guide-content">
+                <h2>Excel Export Workflow</h2>
+                <p>Export your Revit parameters to Excel with organized sheets and professional formatting.</p>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Select Categories</h3>
+                        <p>Choose the element categories you want to work with:</p>
+                        <ul style="margin-top: var(--space-md);">
+                            <li>Browse through available categories (Walls, Doors, Windows, Floors, etc.)</li>
+                            <li>Use the search box to quickly find specific categories</li>
+                            <li>Select multiple categories using checkboxes</li>
+                            <li>Use quick selection buttons: "Select All", "Clear All", or "Select Filtered"</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Choose Parameters</h3>
+                        <p>Select the parameters you want to export to Excel:</p>
+                        <ul style="margin-top: var(--space-md);">
+                            <li>Parameters automatically filter based on your category selection</li>
+                            <li>View parameter names and types in an organized list</li>
+                            <li>Use search functionality to find specific parameters</li>
+                            <li>Select individual parameters or use bulk selection options</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Export to Excel</h3>
+                        <p>Generate your organized Excel file:</p>
+                        <ol style="margin-top: var(--space-md);">
+                            <li>Click the "📊 Export to Excel" button</li>
+                            <li>Choose your save location and filename</li>
+                            <li>DynaNex automatically creates separate sheets for each category</li>
+                            <li>Excel opens automatically with your organized data</li>
+                        </ol>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Import Workflow -->
+            <div class="guide-content">
+                <h2>Excel Import Workflow</h2>
+                <p>Safely import your modified Excel data back into Revit with full validation and error handling.</p>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Edit in Excel</h3>
+                        <p>Make your parameter modifications in Excel:</p>
+                        <ul style="margin-top: var(--space-md);">
+                            <li>Open your exported Excel file</li>
+                            <li>Navigate between category sheets as needed</li>
+                            <li>Modify parameter values in the appropriate columns</li>
+                            <li>Save the Excel file when finished</li>
+                        </ul>
+                        <div class="warning-box">
+                            <h4>⚠️ Critical Rules for Excel Editing:</h4>
+                            <ul style="margin-top: var(--space-sm);">
+                                <li><strong>Never modify the Element ID column</strong> - this links rows to Revit elements</li>
+                                <li><strong>Only edit parameter value columns</strong> - avoid changing headers</li>
+                                <li><strong>Maintain data types</strong> - numbers for numeric parameters, text for text parameters</li>
+                                <li><strong>Close Excel</strong> before importing back to Revit</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3>Import Modified Data</h3>
+                        <p>Safely update your Revit model with changes:</p>
+                        <ol style="margin-top: var(--space-md);">
+                            <li>Click the "📥 Import from Excel" button in DynaNex</li>
+                            <li>Select your modified Excel file</li>
+                            <li>Review the import preview and confirmation dialog</li>
+                            <li>Confirm the import to apply changes to your Revit model</li>
+                        </ol>
+                    </div>
+                    <div class="step-visual">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Excel Tips Section -->
+    <section id="excel-tips" class="guide">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Excel Tips & Techniques</h2>
+                <p class="section-description">Advanced Excel techniques to maximize your DynaNex workflow efficiency</p>
+            </div>
+
+            <div class="guide-content">
+                <h2>Smart Data Manipulation</h2>
+                <p>Use Excel's powerful features to make bulk changes across multiple elements efficiently.</p>
+
+                <h3>Find & Replace for Pattern Changes</h3>
+                <p>Quickly update similar values across your parameter data:</p>
+                <div class="tip-box">
+                    <ul style="margin: var(--space-md) 0;">
+                        <li><strong>Ctrl+H:</strong> Open Find & Replace dialog</li>
+                        <li><strong>Replace material names:</strong> "Concrete" → "High-Strength Concrete"</li>
+                        <li><strong>Update dimensions:</strong> "200mm" → "250mm" across multiple elements</li>
+                        <li><strong>Standardize naming:</strong> Convert "Wall_01" to "W-01" format</li>
+                    </ul>
+                </div>
+
+                <h3>Advanced Formulas & Calculations</h3>
+                <p>Use IF statements to set parameters based on conditions:</p>
+                <div class="code-content" style="background: var(--dark-gray); padding: var(--space-lg); border-radius: var(--radius-lg); margin: var(--space-md) 0; font-family: monospace;">
+                    <div style="color: #50fa7b;">=IF(B2>3000,"High Ceiling","Standard Ceiling")</div>
+                    <div style="color: #50fa7b;">=IF(C2="Exterior","Weather Resistant","Standard")</div>
+                    <div style="color: #50fa7b;">=IF(AND(D2="Wall",E2>200),"Load Bearing","Partition")</div>
+                </div>
+
+                <h3>Unit Conversion Formulas</h3>
+                <p>Convert between different measurement units:</p>
+                <div class="code-content" style="background: var(--dark-gray); padding: var(--space-lg); border-radius: var(--radius-lg); margin: var(--space-md) 0; font-family: monospace;">
+                    <div style="color: #8be9fd;">Millimeters to Feet: =A2/304.8</div>
+                    <div style="color: #8be9fd;">Square Meters to Square Feet: =A2*10.764</div>
+                    <div style="color: #8be9fd;">Celsius to Fahrenheit: =(A2*9/5)+32</div>
+                </div>
+            </div>
+
+            <div class="guide-content">
+                <h2>Data Validation & Quality Control</h2>
+                
+                <h3>Create Dropdown Lists</h3>
+                <p>Ensure consistent parameter values with data validation:</p>
+                <ol style="margin: var(--space-md) 0;">
+                    <li>Select the parameter column</li>
+                    <li>Data → Data Validation → List</li>
+                    <li>Enter allowed values: "Concrete,Steel,Wood,Masonry"</li>
+                    <li>Enable error messages for invalid entries</li>
+                </ol>
+
+                <div class="feature-highlight">
+                    <h4>🎯 Common Validation Lists for Revit Parameters:</h4>
+                    <ul style="margin-top: var(--space-sm);">
+                        <li><strong>Materials:</strong> Concrete, Steel, Wood, Masonry, Glass</li>
+                        <li><strong>Fire Ratings:</strong> 0HR, 1HR, 2HR, 3HR, 4HR</li>
+                        <li><strong>Assembly Types:</strong> Interior, Exterior, Partition, Structural</li>
+                        <li><strong>Status:</strong> Existing, New, Demolish, Phase 2</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="guide">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Installation Guide</h2>
+                <p class="section-description">Quick and easy setup for DynaNex Advanced Revit Addin</p>
+            </div>
+
+            <div class="guide-content">
+                <h2>System Requirements</h2>
+                <div class="requirements-box">
+                    <h4>💻 Minimum System Requirements</h4>
+                    <ul style="margin-top: var(--space-md);">
+                        <li><strong>Operating System:</strong> Windows 10 (64-bit) or Windows 11</li>
+                        <li><strong>Revit Version:</strong> Autodesk Revit 2020-2026</li>
+                        <li><strong>pyRevit:</strong> pyRevit 4.8+ (Required for installation)</li>
+                        <li><strong>Excel Version:</strong> Microsoft Excel 2016 or newer</li>
+                        <li><strong>RAM:</strong> 8GB minimum (16GB recommended)</li>
+                        <li><strong>Storage:</strong> 50MB free disk space</li>
+                        <li><strong>Python:</strong> Python 2.7+ or 3.7+ (comes with pyRevit)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="guide-content">
+                <h2>Install pyRevit (If Not Already Installed)</h2>
+                <p>DynaNex requires pyRevit to be installed first. If you don't have pyRevit installed:</p>
+                
+                <ol style="margin: var(--space-md) 0;">
+                    <li>Visit the official pyRevit website: <strong>https://github.com/eirannejad/pyRevit</strong></li>
+                    <li>Download the latest pyRevit installer</li>
+                    <li>Run the installer and follow the setup wizard</li>
+                    <li>Launch Revit to verify pyRevit is working (you should see pyRevit tab)</li>
+                </ol>
+                
+                <div class="success-box">
+                    <h4>✅ Verify pyRevit Installation:</h4>
+                    <ul style="margin-top: var(--space-sm);">
+                        <li>Open Revit and look for the <strong>pyRevit</strong> tab in the ribbon</li>
+                        <li>Click on <strong>pyRevit</strong> → <strong>Settings</strong> to verify it's working</li>
+                        <li>Ensure pyRevit version is 4.8 or higher</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="guide-content">
+                <h2>Download & Install DynaNex</h2>
+                <p>With pyRevit installed, you can now install DynaNex through pyRevit's extension system:</p>
+                
+                <h3>Method 1: Install via pyRevit Extensions (Recommended)</h3>
+                <ol style="margin: var(--space-md) 0;">
+                    <li><strong>Open Revit</strong> with pyRevit installed</li>
+                    <li><strong>Go to pyRevit tab</strong> → <strong>Extensions</strong></li>
+                    <li><strong>Search for "DynaNex"</strong> in the extensions browser</li>
+                    <li><strong>Click Install</strong> and wait for completion</li>
+                    <li><strong>Restart Revit</strong> to activate DynaNex</li>
+                </ol>
+
+                <h3>Method 2: Manual Installation</h3>
+                <ol style="margin: var(--space-md) 0;">
+                    <li><strong>Download DynaNex package</strong> (ZIP file)</li>
+                    <li><strong>Extract to pyRevit extensions folder:</strong></li>
+                    <li><code>C:\Users\[Username]\AppData\Roaming\pyRevit\Extensions\</code></li>
+                    <li><strong>Create folder:</strong> DynaNex.extension</li>
+                    <li><strong>Restart Revit</strong> to load the extension</li>
+                </ol>
+
+                <div class="success-box">
+                    <h4>✅ Installation Complete!</h4>
+                    <p>DynaNex will appear in the pyRevit tab when you launch Revit. Look for the DynaNex button in the pyRevit toolbar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting Section -->
+    <section id="troubleshooting" class="guide">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Troubleshooting & Support</h2>
+                <p class="section-description">Quick solutions for common issues and comprehensive support resources</p>
+            </div>
+
+            <div class="guide-content">
+                <h2>Common Export Issues</h2>
+                
+                <h4>Problem: "No categories selected" error when trying to export</h4>
+                <div class="tip-box">
+                    <strong>Solution:</strong>
+                    <ol style="margin-top: var(--space-sm);">
+                        <li>Ensure you have selected at least one category from the categories list</li>
+                        <li>Check that the selected categories contain elements in your chosen scope</li>
+                        <li>Try switching between "Active View" and "Whole Model" scope</li>
+                        <li>Refresh the categories list if needed</li>
+                    </ol>
+                </div>
+
+                <h4>Problem: Excel export creates empty sheets</h4>
+                <div class="tip-box">
+                    <strong>Solution:</strong>
+                    <ul style="margin-top: var(--space-sm);">
+                        <li>The selected categories have no elements in the current scope</li>
+                        <li>Switch to "Whole Model" scope to include all elements</li>
+                        <li>Check if elements are visible in the active view</li>
+                        <li>Verify element categories haven't been filtered out</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="guide-content">
+                <h2>Common Import Issues</h2>
+                
+                <h4>Problem: "Cannot open Excel file" error during import</h4>
+                <div class="warning-box">
+                    <strong>Solution:</strong>
+                    <ol style="margin-top: var(--space-sm);">
+                        <li><strong>Close Excel completely</strong> before attempting import</li>
+                        <li>Check that the Excel file isn't opened by another user</li>
+                        <li>Ensure the file isn't corrupted (try opening it manually first)</li>
+                        <li>Verify the file format is .xlsx (not .xls or other formats)</li>
+                    </ol>
+                </div>
+
+                <h4>Problem: Import fails with "Element ID not found" errors</h4>
+                <div class="warning-box">
+                    <strong>Critical Issue - Element ID Column Modified:</strong>
+                    <ul style="margin-top: var(--space-sm);">
+                        <li>The Element ID column has been altered or deleted</li>
+                        <li>This column links Excel rows to Revit elements</li>
+                        <li>Use a fresh export or restore the Element ID column</li>
+                        <li>Never modify the Element ID column values</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="guide-content">
+                <h2>Getting Additional Help</h2>
+                
+                <div class="feature-highlight">
+                    <h4>📞 Support Resources:</h4>
+                    <ul style="margin-top: var(--space-sm);">
+                        <li><strong>Documentation:</strong> Complete user guide and Excel tips sections</li>
+                        <li><strong>Community Forum:</strong> Connect with other DynaNex users</li>
+                        <li><strong>Direct Support:</strong> Contact developer Nadeem Ahmed for technical assistance</li>
+                        <li><strong>LinkedIn:</strong> <a href="https://my.linkedin.com/in/nadeemahmed-nbim" target="_blank">Connect with Nadeem Ahmed</a></li>
+                    </ul>
+                </div>
+
+                <div class="requirements-box">
+                    <h4>🐛 Reporting Issues:</h4>
+                    <p>When reporting issues, please include:</p>
+                    <ul style="margin-top: var(--space-sm);">
+                        <li>DynaNex version number</li>
+                        <li>Revit version and build</li>
+                        <li>Detailed steps to reproduce the issue</li>
+                        <li>Error messages (if any)</li>
+                        <li>Model size and complexity information</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="Logo.png" alt="DynaNex Logo">
+                        </div>
+                        <span class="logo-text">DynaNex</span>
+                    </div>
+                    <p>Advanced parameter management for Revit professionals worldwide.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#guide">Quick Start</a>
+                        <a href="installation.html">Installation</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Documentation</h4>
+                        <a href="user-guide.html">User Guide</a>
+                        <a href="excel-tips.html">Excel Tips</a>
+                        <a href="troubleshooting.html">Support</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Developer</h4>
+                        <a href="https://my.linkedin.com/in/nadeemahmed-nbim" target="_blank">Nadeem Ahmed</a>
+                        <a href="#credits">Credits</a>
+                        <a href="#license">Open Source License</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-credit">
+                    <p>&copy; 2025 DynaNex V1.0 - Developed by <strong>Nadeem Ahmed</strong></p>
+                    <p>Advanced Revit Addin - "Power Your Connections"</p>
+                </div>
+                <div class="footer-version">
+                    <span class="version-badge">Version 1.0</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
