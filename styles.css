@@ -63,7 +63,7 @@
 
 /* Base Styles */
 html {
-    scroll-behavior: smooth;
+    /* Removed scroll-behavior: smooth to use custom JavaScript implementation */
 }
 
 body {

@@ -12,8 +12,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Smooth Scrolling for Navigation Links
-    document.querySelectorAll('.nav-link').forEach(link => {
+    // Fast Custom Smooth Scrolling for Navigation Links
+    function fastSmoothScroll(target, duration = 800) {
+        const targetPosition = target.offsetTop - 80; // Account for navbar
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        // Easing function for smooth animation (easeInOutCubic)
+        function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t * t + b;
+            t -= 2;
+            return c / 2 * (t * t * t + 2) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    // Apply fast smooth scrolling to all anchor links (nav + footer)
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
@@ -22,16 +48,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetSection = document.querySelector(href);
                 
                 if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Use custom fast smooth scroll
+                    fastSmoothScroll(targetSection, 600); // Faster 600ms instead of default
                     
-                    // Update active nav link
-                    document.querySelectorAll('.nav-link').forEach(navLink => {
-                        navLink.classList.remove('active');
-                    });
-                    this.classList.add('active');
+                    // Update active nav link (only for nav links)
+                    if (this.classList.contains('nav-link')) {
+                        document.querySelectorAll('.nav-link').forEach(navLink => {
+                            navLink.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
                     
                     // Close mobile menu if open
                     if (mobileMenu && mobileMenu.classList.contains('active')) {
