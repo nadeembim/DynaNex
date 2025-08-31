@@ -43,52 +43,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Active Navigation Highlight on Scroll - Optimized for mobile
+    // Active Navigation Highlight on Scroll - Simple and fast
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-    let isScrolling = false;
 
     function updateActiveNav() {
-        if (!isScrolling) {
-            window.requestAnimationFrame(function() {
-                const scrollPosition = window.scrollY + 100;
-                
-                // Use cached section positions for better performance
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    const sectionId = section.getAttribute('id');
-                    
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        navLinks.forEach(link => {
-                            const isActive = link.getAttribute('href') === `#${sectionId}`;
-                            if (isActive && !link.classList.contains('active')) {
-                                // Remove active from all links first
-                                navLinks.forEach(l => l.classList.remove('active'));
-                                // Add active to current link
-                                link.classList.add('active');
-                            }
-                        });
-                    }
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
                 });
-                
-                isScrolling = false;
-            });
-        }
-        isScrolling = true;
+            }
+        });
     }
 
-    // Throttled scroll listener for better mobile performance
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateActiveNav, 16); // ~60fps
-    }, { passive: true });
+    // Simple scroll listener - works on all devices
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
 
-    // Animate Elements on Scroll - Optimized for mobile
-    const isTouchDevice = 'ontouchstart' in window && window.innerWidth <= 768;
+    // Animate Elements on Scroll - Simple and fast
     const observerOptions = {
-        threshold: isTouchDevice ? 0.05 : 0.1,
+        threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
@@ -97,23 +77,23 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-                // Unobserve after animation to improve performance
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe elements for animation - Full speed on desktop
-    const elementsToAnimate = document.querySelectorAll('.feature-card, .step, .doc-card');
-    elementsToAnimate.forEach(element => {
+    // Observe elements for animation - Fast desktop animations
+    document.querySelectorAll('.feature-card, .step, .doc-card').forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        // Much faster animations on desktop
+        const duration = window.innerWidth > 768 ? '0.2s' : '0.4s';
+        element.style.transition = `opacity ${duration} ease, transform ${duration} ease`;
         observer.observe(element);
     });
 
-    // Hero Stats Counter Animation
-    function animateCounter(element, target, duration = 2000) {
+    // Hero Stats Counter Animation - Faster on desktop
+    function animateCounter(element, target, duration = window.innerWidth > 768 ? 800 : 1500) {
         const start = 0;
         const startTime = performance.now();
         
@@ -190,31 +170,19 @@ document.addEventListener('DOMContentLoaded', function() {
         progressObserver.observe(floatingCard);
     }
 
-    // Add parallax effect to hero background - Full speed on desktop
+    // Add parallax effect to hero background - Simple and fast
     function updateParallax() {
         const scrolled = window.pageYOffset;
         const heroBackground = document.querySelector('.hero-background');
         
         if (heroBackground && scrolled < window.innerHeight) {
-            const rate = scrolled * -0.5; // Full parallax intensity restored
-            heroBackground.style.transform = `translateY(${rate}px)`;
+            heroBackground.style.transform = `translateY(${scrolled * -0.5}px)`;
         }
     }
 
-    // Optimized parallax with smooth performance
-    let parallaxTicking = false;
-    function requestParallaxUpdate() {
-        if (!parallaxTicking) {
-            requestAnimationFrame(updateParallax);
-            parallaxTicking = true;
-            setTimeout(() => { parallaxTicking = false; }, 16); // 60fps
-        }
-    }
-
-    // Enable parallax on all devices except small touch screens
-    const isSmallTouchDevice = 'ontouchstart' in window && window.innerWidth <= 768;
-    if (!isSmallTouchDevice) {
-        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    // Simple parallax - works on desktop and tablets
+    if (window.innerWidth > 480) {
+        window.addEventListener('scroll', updateParallax, { passive: true });
     }
 
     // Feature card hover effects - Only on non-touch devices
@@ -251,15 +219,18 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
         
-        // Animate hero content
+        // Animate hero content - Fast on desktop
         const heroContent = document.querySelector('.hero-content');
         if (heroContent) {
-            heroContent.style.animation = 'fadeInUp 1s ease-out';
+            const speed = window.innerWidth > 768 ? '0.4s' : '0.8s';
+            heroContent.style.animation = `fadeInUp ${speed} ease-out`;
         }
         
         const heroVisual = document.querySelector('.hero-visual');
         if (heroVisual) {
-            heroVisual.style.animation = 'fadeInUp 1s ease-out 0.3s both';
+            const speed = window.innerWidth > 768 ? '0.4s' : '0.8s';
+            const delay = window.innerWidth > 768 ? '0.1s' : '0.3s';
+            heroVisual.style.animation = `fadeInUp ${speed} ease-out ${delay} both`;
         }
     });
 
