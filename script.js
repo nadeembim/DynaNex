@@ -82,18 +82,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe elements for animation - Fast desktop animations
+    // Observe elements for animation - Smooth gliding effects
     document.querySelectorAll('.feature-card, .step, .doc-card').forEach(element => {
         element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        // Much faster animations on desktop
-        const duration = window.innerWidth > 768 ? '0.2s' : '0.4s';
-        element.style.transition = `opacity ${duration} ease, transform ${duration} ease`;
+        element.style.transform = 'translateY(40px)';
+        element.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
         observer.observe(element);
     });
 
-    // Hero Stats Counter Animation - Faster on desktop
-    function animateCounter(element, target, duration = window.innerWidth > 768 ? 800 : 1500) {
+    // Hero Stats Counter Animation - Smooth counting
+    function animateCounter(element, target, duration = 2000) {
         const start = 0;
         const startTime = performance.now();
         
@@ -219,18 +217,15 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
         
-        // Animate hero content - Fast on desktop
+        // Animate hero content - Elegant entrance
         const heroContent = document.querySelector('.hero-content');
         if (heroContent) {
-            const speed = window.innerWidth > 768 ? '0.4s' : '0.8s';
-            heroContent.style.animation = `fadeInUp ${speed} ease-out`;
+            heroContent.style.animation = 'fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) ease-out';
         }
         
         const heroVisual = document.querySelector('.hero-visual');
         if (heroVisual) {
-            const speed = window.innerWidth > 768 ? '0.4s' : '0.8s';
-            const delay = window.innerWidth > 768 ? '0.1s' : '0.3s';
-            heroVisual.style.animation = `fadeInUp ${speed} ease-out ${delay} both`;
+            heroVisual.style.animation = 'fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) ease-out 0.3s both';
         }
     });
 

@@ -99,9 +99,10 @@ body {
     border-radius: var(--radius-lg);
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     font-size: 1rem;
+    transform: translateY(0);
 }
 
 .btn-primary {
@@ -111,8 +112,8 @@ body {
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary {
@@ -125,8 +126,8 @@ body {
 .btn-secondary:hover {
     border-color: var(--primary-black);
     color: var(--primary-black);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .btn-download {
@@ -226,13 +227,13 @@ body {
     border-bottom: 1px solid var(--border-gray);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     z-index: 1000;
-    padding: var(--space-sm) 0;
+    padding: 2px 0;
 }
 
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 var(--space-md);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -265,8 +266,8 @@ body {
 }
 
 .nav-main-logo {
-    width: 160px;
-    height: 160px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -283,8 +284,8 @@ body {
 }
 
 .logo-icon {
-    width: 120px;
-    height: 120px;
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -344,7 +345,7 @@ body {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.05s ease;
     position: relative;
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-md);
@@ -396,7 +397,7 @@ body {
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding-top: 80px; /* Account for fixed navbar */
+    padding-top: 40px; /* Account for ultra-compact navbar */
 }
 
 .hero-background {
@@ -701,14 +702,15 @@ body {
     border-radius: var(--radius-xl);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 1px solid var(--border-gray);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
+    transform: translateY(0);
 }
 
 .feature-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .feature-card:hover .feature-icon {
@@ -728,7 +730,8 @@ body {
     font-size: 2rem;
     margin: 0 auto var(--space-lg);
     box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(1);
 }
 
 .feature-card h3 {
@@ -880,7 +883,7 @@ body {
     border: 1px solid var(--gray-200);
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
+    transition: all 0.05s ease;
     position: relative;
     overflow: hidden;
 }
@@ -941,7 +944,7 @@ body {
     right: var(--space-lg);
     opacity: 0;
     transform: translateX(-10px);
-    transition: all 0.3s ease;
+    transition: all 0.05s ease;
 }
 
 .doc-card:hover .doc-arrow {
@@ -1055,35 +1058,14 @@ body {
     }
 }
 
+/* Mobile navigation optimizations */
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
-    /* Fix mobile navigation performance */
     .navbar {
-        background: rgba(0, 0, 0, 0.9) !important;
+        position: static !important;
+        background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
-        padding: var(--space-xs) 0 !important;
-    }
-    
-    /* Performance optimizations ONLY for mobile touch devices */
-    .feature-card,
-    .step,
-    .doc-card {
-        animation-duration: 0.3s;
-        transition-duration: 0.3s;
-    }
-    
-    /* Disable scroll-behavior smooth on mobile for performance */
-    html {
-        scroll-behavior: auto;
-    }
-    
-    /* Hardware acceleration for mobile */
-    .feature-card,
-    .step,
-    .doc-card {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
+        padding: 2px 0 !important;
+        min-height: 30px !important;
     }
 }
 
@@ -1101,21 +1083,40 @@ body {
     
     .nav-toggle {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2px;
+        cursor: pointer;
+    }
+    
+    .nav-toggle .bar {
+        background: var(--primary-white) !important;
+        width: 18px;
+        height: 2px;
+        margin: 1px 0;
+        transition: 0.3s;
+        border-radius: 1px;
     }
     
     .nav-container {
         padding: 0 var(--space-md);
+        min-height: 30px;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
     }
     
     .logo-icon {
-        width: 35px;
-        height: 35px;
+        width: 24px;
+        height: 24px;
     }
     
     /* Hero section mobile optimizations */
     .hero {
         min-height: 90vh;
         padding: var(--space-xl) 0;
+        padding-top: 0; /* Remove top padding since navbar is not fixed on mobile */
     }
     
     .hero-title {
@@ -1270,22 +1271,12 @@ body {
     }
 }
 
-/* Desktop and laptop optimizations - ensure full animations */
-@media (min-width: 769px) and (pointer: fine) {
-    /* Ensure smooth animations on desktop */
-    .feature-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Desktop optimizations */
+@media (min-width: 769px) {
+    .navbar {
+        position: fixed !important;
     }
     
-    .feature-card:hover {
-        transform: translateY(-8px) scale(1.02);
-    }
-    
-    .step {
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    /* Parallax and smooth scrolling enabled on desktop */
     html {
         scroll-behavior: smooth;
     }
@@ -1328,11 +1319,12 @@ body {
     
     /* Logo adjustments for very small screens */
     .logo-icon {
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
     }
     
     .nav-container {
         padding: 0 var(--space-sm);
+        min-height: auto;
     }
 }
