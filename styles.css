@@ -266,12 +266,13 @@ body {
 }
 
 .nav-main-logo {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
+    margin-right: 20px;
     border: none;
     box-shadow: none;
 }
@@ -1223,29 +1224,90 @@ body {
     
     /* Content sections */
     .guide-content {
-        padding: var(--space-lg);
+        padding: var(--space-md);
+        margin-bottom: var(--space-lg);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
     
     .guide-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         margin-bottom: var(--space-md);
+        line-height: 1.3;
+        word-wrap: break-word;
     }
     
     .guide-content h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         margin-bottom: var(--space-sm);
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+    
+    .guide-content h4 {
+        font-size: 1rem;
+        margin-bottom: var(--space-sm);
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+    
+    .guide-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: var(--space-md);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .guide-content ul,
+    .guide-content ol {
+        padding-left: var(--space-lg);
+        margin-bottom: var(--space-md);
+    }
+    
+    .guide-content li {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: var(--space-xs);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     /* Tables and lists mobile friendly */
-    .tip-box, .warning-box, .success-box, .requirements-box {
+    .tip-box, .warning-box, .success-box, .requirements-box, .feature-highlight {
         padding: var(--space-md);
         margin: var(--space-md) 0;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        border-radius: var(--radius-md);
+    }
+    
+    .tip-box h4, .warning-box h4, .success-box h4, .requirements-box h4, .feature-highlight h4 {
+        font-size: 1rem;
+        line-height: 1.3;
+        margin-bottom: var(--space-sm);
+        word-wrap: break-word;
+    }
+    
+    .tip-box p, .warning-box p, .success-box p, .requirements-box p, .feature-highlight p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .tip-box ul, .warning-box ul, .success-box ul, .requirements-box ul, .feature-highlight ul {
+        padding-left: var(--space-lg);
+        font-size: 0.85rem;
     }
     
     .code-content {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding: var(--space-md);
         overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: var(--radius-md);
     }
     
     /* Footer mobile optimization */
@@ -1311,6 +1373,62 @@ body {
     
     .hero-stats {
         gap: var(--space-sm);
+    }
+    
+    /* Enhanced guide content for small screens */
+    .guide-content {
+        padding: var(--space-sm);
+    }
+    
+    .guide-content h2 {
+        font-size: 1.3rem;
+        line-height: 1.2;
+    }
+    
+    .guide-content h3 {
+        font-size: 1rem;
+    }
+    
+    .guide-content h4 {
+        font-size: 0.95rem;
+    }
+    
+    .guide-content p,
+    .guide-content li {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .guide-content ul,
+    .guide-content ol {
+        padding-left: var(--space-md);
+    }
+    
+    /* Better spacing for mobile content */
+    .guide {
+        padding: var(--space-xl) 0;
+    }
+    
+    /* Smaller screen content boxes */
+    .tip-box, .warning-box, .success-box, .requirements-box, .feature-highlight {
+        padding: var(--space-sm);
+        margin: var(--space-sm) 0;
+        font-size: 0.85rem;
+    }
+    
+    .tip-box h4, .warning-box h4, .success-box h4, .requirements-box h4, .feature-highlight h4 {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .tip-box ul, .warning-box ul, .success-box ul, .requirements-box ul, .feature-highlight ul {
+        padding-left: var(--space-md);
+        font-size: 0.8rem;
+    }
+    
+    .code-content {
+        font-size: 0.7rem;
+        padding: var(--space-sm);
     }
     
     .stat-number {

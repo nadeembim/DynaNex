@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.feature-card, .step, .doc-card').forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(40px)';
-        element.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        element.style.transition = 'opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
         observer.observe(element);
     });
 
